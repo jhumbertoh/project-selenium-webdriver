@@ -14,10 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RedmineTest extends BaseTest {
 
-    @BeforeAll
-    public static void launchApp(){
-        driver.get("http://localhost:8081/login");
-    }
 
     @Test
     public void loginRedmine(){
@@ -25,7 +21,6 @@ public class RedmineTest extends BaseTest {
         String user = "jhurtado", password = "passw0rd";
         String userExpected = "Logged in as jhurtado";
 
-        RedmineLoginPage redmineLoginPage = new RedmineLoginPage(driver);
         RedmineHomePage redmineHomePage =  redmineLoginPage.login(user, password);
 
         String userActual = redmineHomePage.getUserLogged();
