@@ -4,6 +4,8 @@ import com.company.projectwebdriver.models.RedmineProject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RedmineProjectsPage extends RedmineLoginPage{
 
@@ -37,5 +39,12 @@ public class RedmineProjectsPage extends RedmineLoginPage{
         }
 
         driver.findElement(btnCreate).click();
+    }
+
+    public String getUIMessage(){
+        //Explicit Wait
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(lblMessage)));
+        return driver.findElement(lblMessage).getText();
     }
 }

@@ -5,7 +5,10 @@ import com.company.projectwebdriver.models.RedmineProject;
 import com.company.projectwebdriver.pages.RedmineHomePage;
 import com.company.projectwebdriver.pages.RedmineLoginPage;
 import com.company.projectwebdriver.pages.RedmineProjectsPage;
+import com.company.projectwebdriver.utils.Util;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RedmineProjectTest extends BaseTest {
 
@@ -17,17 +20,18 @@ public class RedmineProjectTest extends BaseTest {
 
         RedmineProjectsPage redmineProjectsPage = redmineHomePage.clickOnLink("Projects");
 
+        String number = Util.generateRandomNumber();
+
         RedmineProject redmineProject = new RedmineProject();
-        redmineProject.setName("RedmineProjectName");
-        redmineProject.setDescription("Esta es una descripción de prueba");
-        redmineProject.setHomePage("RedmineProjectName");
+        redmineProject.setName("RedmineProjectName" + number);
+        redmineProject.setDescription("Esta es una descripción de prueba " + number);
+        redmineProject.setHomePage("RedmineProjectName" + number);
         redmineProject.setPublic(true);
 
 
         redmineProjectsPage.createProject(redmineProject);
 
-
-
+        assertEquals("Successful creation.", redmineProjectsPage.getUIMessage(), "The message is not correct");
         System.out.println("");
     }
 }
